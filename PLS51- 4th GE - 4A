@@ -1,0 +1,63 @@
+1. XOR (R1), (R2), (R3)  ; Mem[R1] XOR Mem[R2] 🡪 Mem[R3]
+---------------------------------------------------------
+
+T1 PCout, MARin,  Read, Select 4, Add, Zin
+T2 Zout,  PCin,  (Yin),  WFMC
+T3 MDRout, IRin
+T4 R1out, MARin, Read, WMFC
+T5 MDRout, TEMPin
+T6 R2out, MARin, Read, WMFC
+T7 MDRout,   Yin,
+T8 TEMPout,  XOR, SelectY, Zin
+T9 Zout,  MDRin
+T10 R3out, MARin,  Write,  WMFC, End
+
+
+2. ADD R1, (R2, R3), 3FA5h	; R1 + Mem[R2+R3] 🡪 Mem[3FA5h]
+-----------------------------------------------------------
+T1 PCout, MARin,  Read, Select 4, Add, Zin
+T2 Zout,  PCin,  (Yin),  WFMC
+T3 MDRout, IRin
+T4 PCout,  MARin,  Read,  Select4, Add, Zin
+T5 Zout, PCin,  WMFC
+T6 MDRout, TEMPin
+T7 R2out, Yin,
+T8 R3out, SelectY, Add, Zin
+T9 Zout, MARin, Read, WMFC
+T10 MDRout,  Υin,
+T11 R1out,  SelectY,  Add, Zin
+T12 Zout, MARin, Read, WMFC
+T13 TEMPout, MARin, Write, WMFC, End
+
+
+3. MOV R1(A0B0h), R2	; R2 🡨 Mem[R1+Mem[A0B0h]]
+------------------------------------------------
+T1 PCout, MARin,  Read, Select 4, Add, Zin
+T2 Zout,  PCin,  (Yin),  WFMC
+T3 MDRout, IRin
+T4 PCout, MARin,  Read, Select 4, Add, Zin
+T5 Zout,  PCin,   WFMC
+T6 MDRout,  MARin,  Read, WFMC
+T7 MDRout, Yin,
+T8 R1out,  SelectY, Add, Zin
+T9 Zout, MARin,  Read, WMFC
+T10 MDRout, R2in, End
+
+
+4. JMP ((F00Ah, R3))	; PC 🡨 Mem[Mem[F00Ah+R3]]
+------------------------------------------------
+T1 PCout, MARin , Read, Select4, Add, Zin
+T2 Zout, PCin, Yin, WMFC
+T3 MDRout, IR in
+T4 PCout, MARin, Read, Select4, Add, Zin
+T5 Zout, PCin,  WMFC
+T6 MDRout, Yin, SelectY
+T7 R3out, ADD, Zin
+T8 Zout, MARin,  Read, WMFC
+T9 MDRout,  MARin,  Read, WMFC
+T10 MDRout, PCin, End
+
+
+
+
+
