@@ -15,3 +15,7 @@ After compression, the table will have the following contents (changes are highl
 4th GE/ 4th Topic/A
 --------------------
 Write the microinstruction subroutines for each of the following instructions:
+1. XOR (R1), (R2), (R3) ; Mem[R1] XOR Mem[R2]  Mem[R3]
+2. ADD R1, (R2, R3), 3FA5h ; R1 + Mem[R2+R3]  Mem[3FA5h]
+3. MOV R1(A0B0h), R2 ; R2  Mem[R1+Mem[A0B0h]]
+4. JMP ((F00Ah, R3)) ; PC  Mem[Mem[F00Ah+R3]]
