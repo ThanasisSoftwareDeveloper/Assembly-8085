@@ -1,0 +1,23 @@
+3rd Topic/A
+-------------
+
+      LXI H, 4203H ;
+      MOV C, M ;
+      INX H ;
+      MVI B, 0H ;
+LOOP1:MOV A, M ;
+      CPI 0H ;
+      JNZ DNZ;
+      INR B ;
+      INX H ;
+      SUI 20Η;
+      STAX D;
+DNZ   DCR C ;
+      JNZ LOOP ;
+      MOV M, B ;
+LOOP2:MOV Β, M;
+      LXI D, FF;
+      DCR B ;
+      JNZ LOOP2;
+       HLT ;
+
